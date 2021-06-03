@@ -7,7 +7,7 @@ Created on Tue Mar 30 19:56:14 2021
 #Some libraries are unused for now.
 #import numpy as np
 import networkx as nx
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import Func
 
 from qiskit import BasicAer
@@ -56,13 +56,13 @@ if __name__ == '__main__':
     
 
     p = 1 #QAOA circuit depth
-    
+    G_target = G_test
     #QAOA Optimize the whole graph.
-    vc = Func.qiskit_QAOA(G_test, p)
+    vc = Func.qiskit_QAOA(G_target, p)
     plot_histogram(vc, figsize=(10, 8), title="QAOA, p="+str(p), bar_labels=False)
-    
+    plt.show()
     #Divide-and-Conquer QAOA. 
     # variable k is size of sub-graph, t is not used at the moment. 
-    dc = Func.DC_QAOA(G_test, p=p, t=5, k=5)
+    dc = Func.DC_QAOA(G_target, p=p, t=5, k=5)
     plot_histogram(dc, figsize=(10, 8), title="DC-QAOA, p="+str(p), bar_labels=False)
-    
+    plt.show()
